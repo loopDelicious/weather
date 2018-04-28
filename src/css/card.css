@@ -1,0 +1,40 @@
+ul#horizontal-list {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #333333;
+}
+
+ul#horizontal-list li {
+    float: left;
+}
+
+.day-card a {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 16px;
+    text-decoration: none;
+}
+
+.temps {
+    display: block;
+    text-align: center;
+    list-style-type: none;
+    margin: 0;
+}
+
+.temps li {
+    float: left;
+    padding: 10px;
+}
+
+.max-temp {
+    color: white;
+}
+
+.min-temp {
+    color: darkgray;
+}
+

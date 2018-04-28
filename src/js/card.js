@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import secret from './secrets.js';
-import '../css/App.css';
+import '../css/card.css';
 
 class Card extends Component {
 
@@ -15,30 +15,41 @@ class Card extends Component {
 
         const key = this.state.openWeatherKey;
         let zip = this.state.zip + ',' + this.state.country;
-        fetch('http://api.openweathermap.org/data/2.5/forecast?zip=' + zip + '&APPID=' + key + '&cnt=5&units=imperial').then((response) => {
+        fetch('http://api.openweathermap.org/data/2.5/forecast?zip=' + zip + '&APPID=' + key + '&units=imperial').then((response) => {
             return response.json();
         }).then((json) => {
             this.setState({
               forecast: json.list
             })
-        })
+        });
     };
 
     render() {
 
+
+        console.log(this.state.forecast.length);
         let dayRow = this.state.forecast.map((day, index) => {
+
+            let dayName = new Date(day.dt_txt.split(' ')[0]).toString().split(' ')[0];
+            let dayIconUrl = 'http://openweathermap.org/img/w/' + day.weather[0].icon + '.png';
+            let dayDescription = day.weather[0].description;
+            let minTemp = day.main.temp_min.toFixed(0);
+            let maxTemp = day.main.temp_max.toFixed(0);
+
             return (
                 <li key={index} className="day-card">
-                    <div>
-                        <p>placeholder for date</p>
-                    </div>
-                    <div>
-                        <p>placeholder for icon</p>
-                    </div>
-                    <div className="temps">
-                        <p>{day.main.temp_max.toFixed(0)}</p>
-                        <p>{day.main.temp_min.toFixed(0)}</p>
-                    </div>
+                    <a href="#day">
+                        <div>
+                            <p>{dayName}</p>
+                        </div>
+                        <div>
+                            <img alt={dayDescription} src={dayIconUrl} />
+                        </div>
+                        <ul className="temps">
+                            <li className="max-temp">{maxTemp}</li>
+                            <li className="min-temp">{minTemp}</li>
+                        </ul>
+                    </a>
                 </li>
             )
         });
@@ -48,7 +59,9 @@ class Card extends Component {
                 {this.state.forecast ?
                     <div>
                         <h2>5-day forecast for {this.state.zip}:</h2>
-                        <ul>{dayRow}</ul>
+                        <div className="table">
+                            <ul id="horizontal-list">{dayRow}</ul>
+                        </div>
                     </div>
                         :
                     null
