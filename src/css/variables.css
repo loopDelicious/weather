@@ -1,0 +1,14 @@
+:root{
+    --main-color: #dce775;
+    --secondary-color: #f57c00;
+    --tertiary-color: #afb42b;
+    --contrast: #e65100;
+    --pop: #cddc39;
+    --light-text: #FFFFFF;
+    --text:#cfd8dc;
+
+    /* typography */
+
+    --main-font: "Encode Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+
+}
