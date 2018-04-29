@@ -57,7 +57,7 @@ ul#horizontal-list li:hover {
 .tooltip .tooltiptext {
     visibility: hidden;
     width: 120px;
-    background-color: darkgray;
+    background-color: var(--contrast);
     color: var(--text);
     text-align: center;
     padding: 5px 0;
@@ -66,12 +66,15 @@ ul#horizontal-list li:hover {
     /* Position the tooltip text - see examples below! */
     position: absolute;
     z-index: 1;
-    top: 100%;
-    left: 50%;
-    margin-left: -60px;
+    top: -5px;
+    left: 105%;
+
+    opacity: 0;
+    transition: opacity 1s;
 }
 
 /* Show the tooltip text when you mouse over the tooltip container */
 .tooltip:hover .tooltiptext {
     visibility: visible;
+    opacity: 1;
 }
