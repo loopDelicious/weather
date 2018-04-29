@@ -34,6 +34,7 @@ class Card extends Component {
             let maxTemp = day.high.fahrenheit;
             let dayDescription = day.conditions;
             let dayIconUrl = "https://icons.wxug.com/i/c/i/" + day.icon + '.gif';
+            let dayTooltip = day.fcttext;
 
             return (
                 <li key={index} className="day-card">
@@ -47,6 +48,9 @@ class Card extends Component {
                             <li className="min-temp">{minTemp}</li>
                         </ul>
                     </a>
+                    <div className="tooltip">&#9432;
+                        <span className="tooltiptext">{dayTooltip}</span>
+                    </div>
                 </li>
             )
         });

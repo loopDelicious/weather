@@ -4,6 +4,7 @@ ul#horizontal-list {
     padding: 0;
     overflow: hidden;
     background-color: var(--tertiary-color);
+    color: var(--text);
     text-align: center;
 }
 
@@ -11,9 +12,16 @@ ul#horizontal-list li {
     float: left;
     text-align: center;
     display: inline;
-    color: white;
     padding: 16px;
+}
+
+ul#horizontal-list p {
     text-decoration: none;
+    color: var(--light-text);
+}
+
+ul#horizontal-list li:hover {
+    filter: brightness(0.4);
 }
 
 .card-contents {
@@ -33,10 +41,37 @@ ul#horizontal-list li {
 }
 
 .max-temp {
-    color: white;
+    color: var(--light-text);
 }
 
 .min-temp {
-    color: darkgray;
+    color: var(--text);
 }
 
+.tooltip {
+    position: relative;
+    display: inline-block;
+}
+
+/* Tooltip text */
+.tooltip .tooltiptext {
+    visibility: hidden;
+    width: 120px;
+    background-color: darkgray;
+    color: var(--text);
+    text-align: center;
+    padding: 5px 0;
+    border-radius: 6px;
+
+    /* Position the tooltip text - see examples below! */
+    position: absolute;
+    z-index: 1;
+    top: 100%;
+    left: 50%;
+    margin-left: -60px;
+}
+
+/* Show the tooltip text when you mouse over the tooltip container */
+.tooltip:hover .tooltiptext {
+    visibility: visible;
+}
