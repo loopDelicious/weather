@@ -3,31 +3,33 @@ ul#horizontal-list {
     margin: 0;
     padding: 0;
     overflow: hidden;
-    background-color: #333333;
+    background-color: var(--tertiary-color);
+    text-align: center;
 }
 
 ul#horizontal-list li {
     float: left;
-}
-
-.day-card a {
-    display: block;
-    color: white;
     text-align: center;
+    display: inline;
+    color: white;
     padding: 16px;
     text-decoration: none;
 }
 
-.temps {
+.card-contents {
+    text-decoration: none;
     display: block;
-    text-align: center;
-    list-style-type: none;
-    margin: 0;
 }
 
-.temps li {
-    float: left;
-    padding: 10px;
+.card-contents img {
+    display: block;
+    margin: auto;
+}
+
+.temps {
+    text-align: center;
+    list-style-type: none;
+    margin: auto;
 }
 
 .max-temp {

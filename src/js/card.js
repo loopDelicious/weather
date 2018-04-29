@@ -5,44 +5,41 @@ import '../css/card.css';
 class Card extends Component {
 
     state = {
-        zip: '94121',
-        country: 'us',
-        openWeatherKey: secret.openWeatherKey,
+        state: 'CA',
+        city: "San_Francisco",
+        wundergroundKey: secret.wundergroundKey,
         forecast: []
     };
 
     componentDidMount = () => {
 
-        const key = this.state.openWeatherKey;
-        let zip = this.state.zip + ',' + this.state.country;
-        fetch('http://api.openweathermap.org/data/2.5/forecast?zip=' + zip + '&APPID=' + key + '&units=imperial').then((response) => {
+        const key = this.state.wundergroundKey;
+        let state = this.state.state;
+        let city = this.state.city;
+
+        fetch('http://api.wunderground.com/api/' + key + '/forecast10day/q/' + state + '/' + city + '.json').then((response) => {
             return response.json();
         }).then((json) => {
             this.setState({
-              forecast: json.list
+                forecast: json.forecast.simpleforecast.forecastday.slice(0,5)
             })
         });
     };
 
     render() {
 
-
-        console.log(this.state.forecast.length);
         let dayRow = this.state.forecast.map((day, index) => {
-
-            let dayName = new Date(day.dt_txt.split(' ')[0]).toString().split(' ')[0];
-            let dayIconUrl = 'http://openweathermap.org/img/w/' + day.weather[0].icon + '.png';
-            let dayDescription = day.weather[0].description;
-            let minTemp = day.main.temp_min.toFixed(0);
-            let maxTemp = day.main.temp_max.toFixed(0);
+            let dayName = day.date.weekday_short;
+            let minTemp = day.low.fahrenheit;
+            let maxTemp = day.high.fahrenheit;
+            let dayDescription = day.conditions;
+            let dayIconUrl = "https://icons.wxug.com/i/c/i/" + day.icon + '.gif';
 
             return (
                 <li key={index} className="day-card">
                     <a href="#day">
-                        <div>
+                        <div className="card-contents">
                             <p>{dayName}</p>
-                        </div>
-                        <div>
                             <img alt={dayDescription} src={dayIconUrl} />
                         </div>
                         <ul className="temps">
@@ -58,10 +55,8 @@ class Card extends Component {
             <div className="card">
                 {this.state.forecast ?
                     <div>
-                        <h2>5-day forecast for {this.state.zip}:</h2>
-                        <div className="table">
-                            <ul id="horizontal-list">{dayRow}</ul>
-                        </div>
+                        <h2>5-day forecast for {this.state.city}:</h2>
+                        <ul id="horizontal-list">{dayRow}</ul>
                     </div>
                         :
                     null
