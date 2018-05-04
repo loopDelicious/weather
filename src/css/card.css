@@ -1,11 +1,21 @@
+.weather-box {
+    width: 100%;
+    overflow: hidden;
+    text-align: center;
+    margin: 0 auto;
+}
+
 ul#horizontal-list {
-    list-style-type: none;
+    list-style: none;
     margin: 0;
     padding: 0;
     overflow: hidden;
     background-color: var(--tertiary-color);
     color: var(--text);
     text-align: center;
+    position: relative;
+    display: block;
+    float: left;
 }
 
 ul#horizontal-list li {
@@ -24,9 +34,8 @@ ul#horizontal-list li:hover {
     filter: brightness(0.4);
 }
 
-.card-contents {
+.day-card a {
     text-decoration: none;
-    display: block;
 }
 
 .card-contents img {
@@ -48,33 +57,23 @@ ul#horizontal-list li:hover {
     color: var(--text);
 }
 
-.tooltip {
-    position: relative;
-    display: inline-block;
+.input-form {
+    margin: 20px;
 }
 
-/* Tooltip text */
-.tooltip .tooltiptext {
-    visibility: hidden;
-    width: 120px;
-    background-color: var(--contrast);
-    color: var(--text);
-    text-align: center;
-    padding: 5px 0;
-    border-radius: 6px;
-
-    /* Position the tooltip text - see examples below! */
-    position: absolute;
-    z-index: 1;
-    top: -5px;
-    left: 105%;
-
-    opacity: 0;
-    transition: opacity 1s;
+.text-field {
+    outline: none;
+    line-height: 20px;
+    border: 0;
+    background: var(--light-text);
+    border-bottom: 1px solid darkgray;
 }
 
-/* Show the tooltip text when you mouse over the tooltip container */
-.tooltip:hover .tooltiptext {
-    visibility: visible;
-    opacity: 1;
+.submit-button {
+    border-radius: 0 4px 4px 0;
+    border: 1px solid darkgray;
+    line-height: 20px;
+    color: whitesmoke;
+    background: gray;
+    cursor: pointer;
 }

@@ -5,37 +5,67 @@ import '../css/card.css';
 class Card extends Component {
 
     state = {
-        state: 'CA',
-        city: "San_Francisco",
-        wundergroundKey: secret.wundergroundKey,
-        forecast: []
+        state: "CA",
+        city: "San Francisco",
+        country: "US",
+        forecast: [],
+        daysToForecast: 5
     };
+
+    wundergroundKey = secret.wundergroundKey;
+    googleKey = secret.googleKey;
 
     componentDidMount = () => {
 
-        const key = this.state.wundergroundKey;
-        let state = this.state.state;
-        let city = this.state.city;
-
-        fetch('http://api.wunderground.com/api/' + key + '/forecast10day/q/' + state + '/' + city + '.json').then((response) => {
+        fetch(`http://api.wunderground.com/api/${this.wundergroundKey}/forecast10day/q/${this.state.state}/${this.state.city}.json`).then((response) => {
             return response.json();
         }).then((json) => {
             this.setState({
-                forecast: json.forecast.simpleforecast.forecastday.slice(0,5)
+                forecast: json.forecast.simpleforecast.forecastday.slice(0, this.state.daysToForecast)
             })
         });
     };
 
+    handleSubmit = (e) => {
+
+        e.preventDefault();
+        let query = this.refs.queryInput.value;
+
+        // geocode the input query
+        fetch(`https://maps.googleapis.com/maps/api/geocode/json?address=${query}&key=${this.googleKey}`).then((response) => {
+            return response.json();
+        }).then((json) => {
+
+            let result = json.results[0].formatted_address.split(',');
+            console.log(result);
+            this.setState({
+                state: result[1],
+                city: result[0].split(" ").join('_'),
+                country: result[2]
+            })
+
+        }).then(() => {
+
+            // get the 10 day forecast
+            fetch(`http://api.wunderground.com/api/${this.wundergroundKey}/forecast10day/q/${this.state.state}/${this.state.city}.json`).then((response) => {
+                return response.json();
+            }).then((json) => {
+                this.setState({
+                    forecast: json.forecast.simpleforecast.forecastday.slice(0, this.state.daysToForecast)
+                })
+            });
+        });
+
+    };
+
     render() {
 
-        console.log(this.state.forecast);
         let dayRow = this.state.forecast.map((day, index) => {
             let dayName = day.date.weekday_short;
             let minTemp = day.low.fahrenheit;
             let maxTemp = day.high.fahrenheit;
             let dayDescription = day.conditions;
-            let dayIconUrl = "https://icons.wxug.com/i/c/i/" + day.icon + '.gif';
-            let dayTooltip = day.conditions;
+            let dayIconUrl = `https://icons.wxug.com/i/c/i/${day.icon}.gif`;
 
             return (
                 <li key={index} className="day-card">
@@ -43,9 +73,6 @@ class Card extends Component {
                         <div className="card-contents tooltip">
                             <p>{dayName}</p>
                             <img alt={dayDescription} src={dayIconUrl} />
-                            {/*<div className="tooltip">&#9432;*/}
-                                <span className="tooltiptext">{dayTooltip}</span>
-                            {/*</div>*/}
                         </div>
                         <ul className="temps">
                             <li className="max-temp">{maxTemp}</li>
@@ -58,10 +85,16 @@ class Card extends Component {
         });
 
         return (
-            <div className="card">
+            <div>
+
+                <form className="input-form" onSubmit={this.handleSubmit}>
+                    <input className="text-field" type="text" ref="queryInput" value={this.state.value} autoFocus />
+                    <input className="submit-button" type="submit" value="Submit" />
+                </form>
+
                 {this.state.forecast ?
-                    <div>
-                        <h2>5-day forecast for {this.state.city}:</h2>
+                    <div className="weather-box">
+                        <h2>5-day forecast for {this.state.city.split("_").join(" ")}:</h2>
                         <ul id="horizontal-list">{dayRow}</ul>
                     </div>
                         :
