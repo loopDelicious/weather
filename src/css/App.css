@@ -6,14 +6,14 @@
   color: var(--light-text);
 }
 
-.layer {
-  background-color: rgba(175, 175, 175, 0.7);
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-}
+/*.layer {*/
+  /*background-color: rgba(175, 175, 175, 0.7);*/
+  /*position: absolute;*/
+  /*top: 0;*/
+  /*left: 0;*/
+  /*width: 100%;*/
+  /*height: 100%;*/
+/*}*/
 
 .App-logo {
   animation: App-logo-spin infinite 20s linear;

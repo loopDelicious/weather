@@ -86,7 +86,7 @@ class Weather extends Component {
 
         return (
             <div>
-                
+
                 {this.state.forecast ?
                     <div className="weather-box">
                         <h2>5-day forecast for {this.state.city.split("_").join(" ")}</h2>

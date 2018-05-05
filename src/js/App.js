@@ -17,8 +17,9 @@ class App extends Component {
         fetch(`https://pixabay.com/api/?key=${this.pixabayKey}`).then((response) => {
             return response.json();
         }).then((json) => {
+            let index = Math.floor(Math.random() * json.hits.length);
             this.setState({
-                pic: json.hits[0].largeImageURL
+                pic: json.hits[index].largeImageURL
             })
         });
     };
