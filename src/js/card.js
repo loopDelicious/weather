@@ -94,7 +94,7 @@ class Card extends Component {
 
                 {this.state.forecast ?
                     <div className="weather-box">
-                        <h2>5-day forecast for {this.state.city.split("_").join(" ")}:</h2>
+                        <h2>5-day forecast for {this.state.city.split("_").join(" ")}</h2>
                         <ul id="horizontal-list">{dayRow}</ul>
                     </div>
                         :

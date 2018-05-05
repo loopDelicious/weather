@@ -7,15 +7,15 @@
 
 ul#horizontal-list {
     list-style: none;
-    margin: 0;
+    margin-left: auto;
+    margin-right: auto;
+    width: 60%;
     padding: 0;
     overflow: hidden;
-    background-color: var(--tertiary-color);
     color: var(--text);
     text-align: center;
     position: relative;
     display: block;
-    float: left;
 }
 
 ul#horizontal-list li {
@@ -32,6 +32,10 @@ ul#horizontal-list p {
 
 ul#horizontal-list li:hover {
     filter: brightness(0.4);
+}
+
+.day-card {
+    border: 1px solid whitesmoke;
 }
 
 .day-card a {
@@ -65,7 +69,7 @@ ul#horizontal-list li:hover {
     outline: none;
     line-height: 20px;
     border: 0;
-    background: var(--light-text);
+    background: rgba(234, 234, 234, 0.7);
     border-bottom: 1px solid darkgray;
 }
 
