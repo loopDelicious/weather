@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import secret from './secrets.js';
-import '../css/card.css';
+import '../css/weather.css';
 
-class Card extends Component {
+class Weather extends Component {
 
     state = {
         state: "CA",
@@ -86,15 +86,14 @@ class Card extends Component {
 
         return (
             <div>
-
-                <form className="input-form" onSubmit={this.handleSubmit}>
-                    <input className="text-field" type="text" ref="queryInput" value={this.state.value} autoFocus />
-                    <input className="submit-button" type="submit" value="Submit" />
-                </form>
-
+                
                 {this.state.forecast ?
                     <div className="weather-box">
                         <h2>5-day forecast for {this.state.city.split("_").join(" ")}</h2>
+                        <form className="input-form" onSubmit={this.handleSubmit}>
+                            <input className="text-field" type="text" ref="queryInput" value={this.state.value} placeholder="update city" autoFocus />
+                            <input className="submit-button" type="submit" value="Submit" />
+                        </form>
                         <ul id="horizontal-list">{dayRow}</ul>
                     </div>
                         :
@@ -106,4 +105,4 @@ class Card extends Component {
     }
 }
 
-export default Card;
+export default Weather;

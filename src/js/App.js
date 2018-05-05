@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import '../css/App.css';
-import Card from './card.js';
+import Weather from './weather.js';
 import secret from './secrets.js';
+import Time from './time.js';
 
 class App extends Component {
 
@@ -33,7 +34,8 @@ class App extends Component {
         return (
           <div className="App" style ={ styles }>
             <div className="layer">
-                <Card />
+                <Time />
+                <Weather />
             </div>
           </div>
         );
