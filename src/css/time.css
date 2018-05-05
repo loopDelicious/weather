@@ -1,0 +1,15 @@
+.time-card {
+    float: left;
+    padding: 20px;
+    text-align: center;
+}
+
+.time {
+    font-size: 48px;
+    font-weight: bolder;
+    margin-bottom: 10px;
+}
+
+.date {
+    font-size: 24px;
+}
