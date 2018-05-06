@@ -27,7 +27,13 @@ class Pics extends Component {
         let photoCards = this.state.photos.map((photo, index) => {
             return (
                 <td className="insta-card" key={index} >
-                    <img className="insta-image" src={photo.images.standard_resolution.url} alt={photo.caption.text} />
+                    <a href={photo.link}>
+                        <img className="insta-image" src={photo.images.standard_resolution.url} alt={photo.caption.text} />
+                    </a>
+                    <div className="insta-likes">
+                        <icon className="fas fa-heart" /> {photo.likes.count}
+                    </div>
+
                 </td>
             )
         });
