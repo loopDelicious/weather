@@ -6,6 +6,9 @@
     "react-scripts": "1.1.4"
   },
   "dependencies": {
+    "@fortawesome/fontawesome": "^1.1.7",
+    "@fortawesome/fontawesome-free-solid": "^5.0.12",
+    "@fortawesome/react-fontawesome": "0.0.19",
     "body-parser": "^1.18.2",
     "express": "^4.16.3",
     "instagram-node": "^0.5.8",

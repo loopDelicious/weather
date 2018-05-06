@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import secret from './secrets.js';
 import '../css/pics.css';
+import FontAwesomeIcon from '@fortawesome/react-fontawesome';
+import faHeart from '@fortawesome/fontawesome-free-solid/faHeart';
 
 class Pics extends Component {
 
@@ -13,7 +15,6 @@ class Pics extends Component {
         fetch(`https://api.instagram.com/v1/users/self/media/recent/?access_token=${secret.instagramToken}`).then((response) => {
             return response.json();
         }).then((json) => {
-            console.log('from api', json);
             this.setState({
                 photos: json.data
             });
@@ -23,15 +24,16 @@ class Pics extends Component {
 
     render() {
 
-        console.log('before render', this.state.photos);
-        let photoCards = this.state.photos.map((photo, index) => {
+        let subSet = this.state.photos.slice(0,5);
+
+        let photoCards = subSet.map((photo, index) => {
             return (
                 <td className="insta-card" key={index} >
                     <a href={photo.link}>
                         <img className="insta-image" src={photo.images.standard_resolution.url} alt={photo.caption.text} />
                     </a>
                     <div className="insta-likes">
-                        <icon className="fas fa-heart" /> {photo.likes.count}
+                        <FontAwesomeIcon icon={faHeart} /> {photo.likes.count}
                     </div>
 
                 </td>
