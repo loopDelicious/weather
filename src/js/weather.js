@@ -75,8 +75,8 @@ class Weather extends Component {
                             <img alt={dayDescription} src={dayIconUrl} />
                         </div>
                         <ul className="temps">
-                            <li className="max-temp">{maxTemp}</li>
-                            <li className="min-temp">{minTemp}</li>
+                            <li className="max-temp">{maxTemp}&#176;</li>
+                            <li className="min-temp">{minTemp}&#176;</li>
                         </ul>
                     </a>
 
@@ -85,22 +85,18 @@ class Weather extends Component {
         });
 
         return (
-            <div>
+            this.state.forecast ?
+                <div className="weather-box">
+                    <h2>5-day forecast for {this.state.city.split("_").join(" ")}</h2>
+                    <form className="input-form" onSubmit={this.handleSubmit}>
+                        <input className="text-field" type="text" ref="queryInput" value={this.state.value} placeholder="update city" autoFocus />
+                        <input className="submit-button" type="submit" value="Submit" />
+                    </form>
+                    <ul id="horizontal-list">{dayRow}</ul>
+                </div>
+                    :
+                null
 
-                {this.state.forecast ?
-                    <div className="weather-box">
-                        <h2>5-day forecast for {this.state.city.split("_").join(" ")}</h2>
-                        <form className="input-form" onSubmit={this.handleSubmit}>
-                            <input className="text-field" type="text" ref="queryInput" value={this.state.value} placeholder="update city" autoFocus />
-                            <input className="submit-button" type="submit" value="Submit" />
-                        </form>
-                        <ul id="horizontal-list">{dayRow}</ul>
-                    </div>
-                        :
-                    null
-                }
-
-            </div>
         );
     }
 }

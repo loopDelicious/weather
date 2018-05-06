@@ -1,6 +1,6 @@
 .App {
   text-align: center;
-  height: 600px;
+  min-height: 600px;
   width: 100%;
   position: relative;
   color: var(--light-text);
