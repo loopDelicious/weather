@@ -1,0 +1,24 @@
+.pics-feed {
+    padding: 50px 0;
+    margin: 0 auto;
+    width: 80%;
+    table-layout: fixed;
+}
+
+.insta-card {
+    margin: 0;
+    border: 1px solid #ccc;
+    float: left;
+    width: 180px;
+    height: 200px;
+}
+
+.insta-image {
+    width: 100%;
+    height: auto;
+    background-size: cover;
+}
+
+.insta-image:hover {
+    border: 1px solid #777;
+}

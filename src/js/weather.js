@@ -15,7 +15,7 @@ class Weather extends Component {
     wundergroundKey = secret.wundergroundKey;
     googleKey = secret.googleKey;
 
-    componentDidMount = () => {
+    componentDidMount() {
 
         fetch(`http://api.wunderground.com/api/${this.wundergroundKey}/forecast10day/q/${this.state.state}/${this.state.city}.json`).then((response) => {
             return response.json();

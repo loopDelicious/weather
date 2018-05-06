@@ -4,21 +4,29 @@ import '../css/time.css';
 class Time extends Component {
 
     constructor(props) {
+
         super(props);
         this.state = {
             date: new Date().toLocaleString(),
             time: new Date().toLocaleString()
         };
-    }
+
+    };
+
     componentDidMount() {
+
         this.intervalID = setInterval(
             () => this.tick(),
             1000
         );
-    }
+
+    };
+
     componentWillUnmount() {
+
         clearInterval(this.intervalID);
-    }
+
+    };
 
     tick() {
 
