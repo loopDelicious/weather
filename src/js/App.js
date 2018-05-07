@@ -4,6 +4,7 @@ import Weather from './weather.js';
 import secret from './secrets.js';
 import Time from './time.js';
 import Pics from './pics.js';
+import Hacker from './hacker.js';
 
 class App extends Component {
 
@@ -37,6 +38,7 @@ class App extends Component {
                 <Time />
                 <Weather />
                 <Pics />
+                <Hacker />
             </div>
           </div>
         );
