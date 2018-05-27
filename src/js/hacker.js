@@ -28,7 +28,7 @@ class Hacker extends Component {
 
     render() {
         return (
-            <div>HI</div>
+            <div>Hacker</div>
         )
     };
 }
